@@ -22,6 +22,10 @@ const DashaPeriodsTable = () => {
   if (loading) {
     return <p>Loading...</p>;
   }
+  console.log(dashaPeriods.data.dasha_periods)
+
+  const dasha_periods_array=dashaPeriods.data.dasha_periods
+
 
   return (
     <div className="container">
@@ -36,8 +40,8 @@ const DashaPeriodsTable = () => {
           </tr>
         </thead>
         <tbody>
-          {dashaPeriods.map((period) => (
-            <tr key={period.id}>
+        {dasha_periods_array.map((period, index) => (
+            <tr key={index}>
               <td>{period.id}</td>
               <td>{period.name}</td>
               <td>{new Date(period.start).toUTCString()}</td>
