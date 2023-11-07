@@ -7,20 +7,20 @@ const DashaPeriodsTable2= () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const basicAuth = btoa('626301:496fcf0f1edd808c37a095120a3b7e72'); 
+    const basicAuth = btoa('626556:78c6c49ddbe16d6268fb807f5ca83e1c'); 
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': `Basic ${basicAuth}`,
     };
 
     const requestData = {
-      day: 10,       // Replace with the actual day of birth
-      month: 5,      // Replace with the actual month of birth
-      year: 1990,    // Replace with the actual year of birth
-      hour: 19,      // Replace with the actual hour of birth
-      min: 55,       // Replace with the actual minute of birth
-      lat: 19.2056,  // Replace with the actual latitude
-      lon: 25.2056,  // Replace with the actual longitude
+      day: 17,       // Replace with the actual day of birth
+      month: 8,      // Replace with the actual month of birth
+      year: 1997,    // Replace with the actual year of birth
+      hour: 16,      // Replace with the actual hour of birth
+      min: 40,       // Replace with the actual minute of birth
+      lat: 18.8714,  // Replace with the actual latitude
+      lon: 79.4443,  // Replace with the actual longitude
       tzone: 5.5,    // Replace with the actual timezone
     };
 

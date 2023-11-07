@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import * as XLSX from 'xlsx';
 
 const DashaPeriodsTable = () => {
   const [dashaPeriods, setDashaPeriods] = useState([]);
@@ -26,10 +27,25 @@ const DashaPeriodsTable = () => {
 
   const dasha_periods_array=dashaPeriods.data.dasha_periods
 
+  const handleDownload = () => {
+    const data = [];
+    data.push(['Id', 'Name', 'Start Date', 'End Date']);
+  
+    dasha_periods_array.forEach((period, index) => {
+      data.push([index, period.name, new Date(period.start).toUTCString(), new Date(period.end).toUTCString()]);
+    });
+  
+    const ws = XLSX.utils.aoa_to_sheet(data);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Dasha Periods');
+    XLSX.writeFile(wb, 'dasha_periods.xlsx');
+  };
+  
+
 
   return (
     <div className="container">
-      <h2>Dasha Periods</h2>
+      <h2>Vimahottari Dasha Periods</h2>
       <table className="table table-bordered">
         <thead>
           <tr>
@@ -42,7 +58,7 @@ const DashaPeriodsTable = () => {
         <tbody>
         {dasha_periods_array.map((period, index) => (
             <tr key={index}>
-              <td>{period.id}</td>
+              <td>{index}</td>
               <td>{period.name}</td>
               <td>{new Date(period.start).toUTCString()}</td>
               <td>{new Date(period.end).toUTCString()}</td>
@@ -50,6 +66,7 @@ const DashaPeriodsTable = () => {
           ))}
         </tbody>
       </table>
+      <button onClick={handleDownload}>Download Excel</button>
     </div>
   );
 };
