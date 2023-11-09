@@ -1,38 +1,44 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import UserDetailsForm2 from "./UserDetailsForm2";
 
 
 const VedicAstro = () => {
   const [dashaperiod, setDashaperiod] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [userDetails,setUserDetails]=useState(null);
   const [activeTable,setActiveTable]=useState("mahadasha");
 
   useEffect(() => {
-    const apiUrl = `https://api.vedicastroapi.com/v3-json/dashas/current-mahadasha-full?dob=17/08/1997&tob=16:40&lat=18.8714&lon=79.4443&tz=5.5&api_key=de196566-0946-5e6b-b9b6-2190d3ab9bff&lang=en`;
+     console.log("userDetails:",userDetails);
+
+    if(userDetails){
+    const apiUrl = `https://api.vedicastroapi.com/v3-json/dashas/current-mahadasha-full?dob=${userDetails.day}/${userDetails.month}/${userDetails.year}&tob=${userDetails.hour}:${userDetails.min}&lat=${userDetails.lat}&lon=${userDetails.lon}&tz=${userDetails.tzone}&api_key=de196566-0946-5e6b-b9b6-2190d3ab9bff&lang=en`;
 
     axios
       .get(apiUrl)
       .then((response) => {
         setDashaperiod(response.data);
-        setLoading(false);
+        
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
-        setLoading(false);
       });
-  }, []);
+    }
+  }, [userDetails]);
 
   function switchTable(table){
     setActiveTable(table)
   }
+
+  const handleUserDetailsSubmit = (details) => {
+    setUserDetails(details);
+    console.log(userDetails);
+   };
   
   console.log(dashaperiod)
   return (
     <div>
-      {loading ? (
-        <p>Loading...</p>
-      ) : dashaperiod ? (
-        
+      { userDetails ? (
         <>
         <h1>VedicAstro</h1>
         <ul className="nav nav-pills">
@@ -85,7 +91,9 @@ const VedicAstro = () => {
               </button>
             </li>
           </ul>
-          {activeTable === "mahadasha" && (
+          {dashaperiod && dashaperiod.response ? (
+            <>
+            {activeTable === "mahadasha" && (
             <Table title=" Mahadasha" data={dashaperiod.response.mahadasha} />
           )}
            {activeTable === "antardasha" && (
@@ -116,10 +124,15 @@ const VedicAstro = () => {
                 </>
             )
            }
+            </>
+          ):(
+            <p>Loading...</p>
+          )
+            }
           </>
       ) 
       : (
-        <p>No data available.</p>
+       <UserDetailsForm2 onSubmit={handleUserDetailsSubmit}/>
       )}
     </div>
   );
