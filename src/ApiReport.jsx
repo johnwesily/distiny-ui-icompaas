@@ -1,13 +1,17 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import UserDetailsForm from "./UserDetailsForm";
+
 
 const ApiReport=()=>{
    const [dashaperiod,setDashaperiod]=useState(null);
-   const [loading,setLoading]=useState(true);
    const [activeTable,setActiveTable] =useState("mahadasha")
+   const [userDetails, setUserDetails] = useState(null);
 
    useEffect(()=>{
-    const basicAuth = btoa('684:30fe39681be0abba1a549fd44d5585f7');
+    console.log("userDetails:", userDetails);
+    if(userDetails){
+    const basicAuth = btoa('687:a64c738021fe07be8992423b6978d448');
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': `Basic ${basicAuth}`,
@@ -15,32 +19,27 @@ const ApiReport=()=>{
          
     };
 
-    const requestData = {
-        day: 17,
-        month: 8,
-        year: 1997,
-        hour: 16,
-        min: 40,
-        lat: 18.8714,
-        lon: 79.4443,
-        tzone: 5.5
-    }
- 
       axios
-      .post('https://json.apireports.com/v1/current_vdasha_all', requestData, {
+      .post('https://json.apireports.com/v1/current_vdasha_all',  { ...userDetails }, {
         headers: headers,
       })
       .then((response) => {
         setDashaperiod(response.data);
-        setLoading(false);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
-        setLoading(false);
+        
       });
-   },[])
+    }
+   },[userDetails])
    
-   console.log(dashaperiod)
+   console.log(dashaperiod);
+ 
+
+   const handleUserDetailsSubmit = (details) => {
+        setUserDetails(details);
+        console.log(userDetails);
+       };
 
    function switchTable(table){
     setActiveTable(table)
@@ -48,9 +47,7 @@ const ApiReport=()=>{
 
     return (
         <div>
-      {loading ? (
-        <p>Loading...</p>
-      ) : dashaperiod ? (
+      {   userDetails ? (
          <div>
           <h1>Astrology Apireports</h1>
           <ul className="nav nav-pills">
@@ -95,25 +92,31 @@ const ApiReport=()=>{
               </button>
             </li>
           </ul>
-          {activeTable === "mahadasha" && (
+          { dashaperiod && dashaperiod.data ? (
+            <>
+          {activeTable === "mahadasha" && dashaperiod.data.major && (
             <Table title="Mahadasha" data={dashaperiod.data.major.dasha_period} />
           )}
-          {activeTable === "antardasha" && (
+          {activeTable === "antardasha" && dashaperiod.data.minor && (
             <Table2 title="Antardasha" data={dashaperiod.data.minor.dasha_period} />
           )}
-          {activeTable === "paryantardasha" && (
+          {activeTable === "paryantardasha" && dashaperiod.data.sub_minor && (
             <Table2 title="Paryantardasha" data={dashaperiod.data.sub_minor.dasha_period} />
           )}
-          {activeTable === "shookshamadasha" && (
+          {activeTable === "shookshamadasha" && dashaperiod.data.sub_sub_minor && (
             <Table2 title="Shookshamadasha" data={dashaperiod.data.sub_sub_minor.dasha_period} />
           )}
-          {activeTable === "pranadasha" && (
+          {activeTable === "pranadasha" && dashaperiod.data.sub_sub_sub_minor &&(
             <Table2 title="Pranadasha" data={dashaperiod.data.sub_sub_sub_minor.dasha_period} />
+          )}
+          </>
+          ):(
+            <p>Loading...</p>
           )}
         </div>
       ) : (
-        <p>No data available.</p>
-      )}
+         <UserDetailsForm onSubmit={handleUserDetailsSubmit} />
+        )}
     </div>
     );
 }

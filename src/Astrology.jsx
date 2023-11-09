@@ -1,49 +1,47 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Table from "./Table";
+import UserDetailsForm from "./UserDetailsForm";
 
 
 
 const Astrology= ()=>{
 
     const [dashaPeriods, setDashaPeriods] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [activeTable,setActiveTable]=useState("mahadasha");
+  const [UserDetails,setUserDetails]=useState(null);
 
   useEffect(() => {
+     console.log("useDetails:",UserDetails);
+
+    if(UserDetails){
     const basicAuth = btoa('626556:78c6c49ddbe16d6268fb807f5ca83e1c');
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': `Basic ${basicAuth}`,
     };
 
-    const requestData = {
-      day: 17,       // Replace with the actual day of birth
-      month: 8,      // Replace with the actual month of birth
-      year: 1997,    // Replace with the actual year of birth
-      hour: 16,      // Replace with the actual hour of birth
-      min: 40,       // Replace with the actual minute of birth
-      lat: 18.8714,  // Replace with the actual latitude
-      lon: 79.4443,  // Replace with the actual longitude
-      tzone: 5.5,    // Replace with the actual timezone
-    };
-
     axios
-      .post('https://json.astrologyapi.com/v1/current_vdasha_all', requestData, {
+      .post('https://json.astrologyapi.com/v1/current_vdasha_all',{...UserDetails}, {
         headers: headers,
       })
       .then((response) => {
         setDashaPeriods(response.data);
-        setLoading(false);
+       
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
-        setLoading(false);
+       
       });
-
-  }, []);
+    }
+  }, [UserDetails])
 
   console.log(dashaPeriods);
+
+  const handleUserDetailsSubmit = (details) => {
+    setUserDetails(details);
+    console.log(UserDetails);
+   };
 
   function switchTable(table){
     setActiveTable(table);
@@ -51,9 +49,7 @@ const Astrology= ()=>{
 
   return (
     <div>
-      {loading ? (
-        <p>Loading...</p>
-      ) : dashaPeriods ? (
+      {UserDetails ?  (
         <div>
           <h1>Astrology </h1>
           
@@ -99,6 +95,8 @@ const Astrology= ()=>{
               </button>
             </li>
           </ul>
+          {dashaPeriods ? (
+          <>
           {activeTable ==="mahadasha" && (
             <Table title="Mahadasha" data={dashaPeriods.major.dasha_period} />
           )}
@@ -121,10 +119,15 @@ const Astrology= ()=>{
               <Table title="Pranadasha" data={dashaPeriods.sub_sub_sub_minor.dasha_period} />
             )
           }
+          </>
+          ):  ( 
+             <p> Loading ...</p>
+          )
+          }
 
         </div>
       ) : (
-        <p>No data available.</p>
+        <UserDetailsForm onSubmit={handleUserDetailsSubmit}/>
       )}
     </div>
   );
