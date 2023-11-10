@@ -50,7 +50,7 @@ const UserDetailsForm2 = ({ onSubmit }) => {
     <h1 className="text-danger">VedicAstro </h1>
     <div className="row">
       <div className="col-md-4">
-        <label>
+        <label className="text-white">
           Day:
           <input
             type="text"
@@ -63,7 +63,7 @@ const UserDetailsForm2 = ({ onSubmit }) => {
         </label>
       </div>
       <div className="col-md-4">
-        <label>
+        <label className="text-white">
           Month:
           <input
             type="text"
@@ -76,7 +76,7 @@ const UserDetailsForm2 = ({ onSubmit }) => {
         </label>
       </div>
       <div className="col-md-4">
-        <label>
+        <label className="text-white">
           Year:
           <input
             type="text"
@@ -92,7 +92,7 @@ const UserDetailsForm2 = ({ onSubmit }) => {
   
     <div className="row">
       <div className="col-md-4">
-        <label>
+        <label className="text-white">
           Hour:
           <input
             type="text"
@@ -105,7 +105,7 @@ const UserDetailsForm2 = ({ onSubmit }) => {
         </label>
       </div>
       <div className="col-md-4">
-        <label>
+        <label className="text-white">
           Min:
           <input
             type="text"
@@ -121,7 +121,7 @@ const UserDetailsForm2 = ({ onSubmit }) => {
   
     <div className="row">
       <div className="col-md-6">
-        <label>
+        <label className="text-white">
           Lat:
           <input
             type="text"
@@ -134,7 +134,7 @@ const UserDetailsForm2 = ({ onSubmit }) => {
         </label>
       </div>
       <div className="col-md-6">
-        <label>
+        <label className="text-white">
           Lon:
           <input
             type="text"
@@ -150,7 +150,7 @@ const UserDetailsForm2 = ({ onSubmit }) => {
   
     <div className="row">
       <div className="col-md-12">
-        <label>
+        <label className="text-white">
           Timezone:
           <input
             type="text"
