@@ -45,7 +45,9 @@ const UserDetailsForm2 = ({ onSubmit }) => {
   };
 
   return (
+  
     <form onSubmit={handleSubmit} className="my-4">
+    <h1 className="text-danger">VedicAstro </h1>
     <div className="row">
       <div className="col-md-4">
         <label>

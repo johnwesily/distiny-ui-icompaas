@@ -1,0 +1,14 @@
+
+.mainContainerSignup {
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to bottom, black, rgb(46, 37, 25));
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  padding-left: 0px;
+  padding-right: 0px;
+  /* margin-left: 10%; */
+  /* position: fixed; */
+}

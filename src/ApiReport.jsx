@@ -46,10 +46,10 @@ const ApiReport=()=>{
    }
 
     return (
-        <div>
+        <div className="mainContainerSignup" >
       {   userDetails ? (
          <div>
-          <h1>Astrology Apireports</h1>
+          <h1 className="text-white">Astrology Apireports</h1>
           <ul className="nav nav-pills">
             <li className="nav-item">
               <button
@@ -115,7 +115,7 @@ const ApiReport=()=>{
           )}
         </div>
       ) : (
-         <UserDetailsForm onSubmit={handleUserDetailsSubmit} />
+         <UserDetailsForm onSubmit={handleUserDetailsSubmit} title="ApiReport"/>
         )}
     </div>
     );
@@ -124,7 +124,7 @@ const ApiReport=()=>{
 
 const Table = ({ title, data }) => (
     <div>
-      <h3>{title}</h3>
+      <h3 className="text-white">{title}</h3>
       <table className="table table-bordered table-striped">
         <thead className="thead-dark">
           <tr>
@@ -154,7 +154,7 @@ const Table = ({ title, data }) => (
 
   const Table2 = ({ title, data }) => (
     <div>
-      <h3>{title}</h3>
+      <h3 className="text-white">{title}</h3>
       <table className="table table-bordered table-striped">
         <thead className="thead-dark">
           <tr>

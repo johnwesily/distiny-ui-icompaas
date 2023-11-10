@@ -2,7 +2,7 @@ import React from "react";
 
 const Table = ({ title, data }) => (
   <div>
-    <h2 className="table-title">{title}</h2>
+    <h2 className="table-title text-white">{title}</h2>
     <table className="table table-bordered table-striped">
       <thead className="thead-dark">
         <tr>

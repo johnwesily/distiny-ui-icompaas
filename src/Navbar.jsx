@@ -7,18 +7,18 @@ const Navbar = () => {
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container">
             <ul className="navbar-nav">
-              <li className="nav-item">
-                <Link to="/astrology" className="nav-link">
+              <li className="nav-item text-danger fw-bold">
+                <Link to="/astrology" className="nav-link text-danger">
                   Astrology
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link to="/vedicastro" className="nav-link">
+              <li className="nav-item text-danger fw-bold">
+                <Link to="/vedicastro" className="nav-link text-danger">
                   VedicAstro
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link to="/apireport" className="nav-link">
+              <li className="nav-item text-danger fw-bold">
+                <Link to="/apireport" className="nav-link text-danger">
                   ApiReport
                 </Link>
               </li>

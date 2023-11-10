@@ -37,10 +37,10 @@ const VedicAstro = () => {
   
   console.log(dashaperiod)
   return (
-    <div>
+    <div className="mainContainerSignup">
       { userDetails ? (
         <>
-        <h1>VedicAstro</h1>
+        <h1 className="text-white">VedicAstro</h1>
         <ul className="nav nav-pills">
             <li className="nav-item">
               <button
@@ -132,7 +132,7 @@ const VedicAstro = () => {
           </>
       ) 
       : (
-       <UserDetailsForm2 onSubmit={handleUserDetailsSubmit}/>
+       <UserDetailsForm2 onSubmit={handleUserDetailsSubmit} />
       )}
     </div>
   );
@@ -142,7 +142,7 @@ const VedicAstro = () => {
 const Table = ({ title, data }) => {
     return (
       <div>
-        <h2>{title} Periods</h2>
+        <h2 className="text-white">{title} Periods</h2>
         <table className="table table-bordered table-striped">
           <thead className="thead-dark">
             <tr>

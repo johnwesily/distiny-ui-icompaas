@@ -5,7 +5,7 @@ const Home= ()=>{
 
     return (
         <div className="App">
-           <div>
+           <div className="mainContainerSignup">
            <h1>Astrology Dasha Periods</h1>
              {/* <DashaPeriodsTable /> */}
              <DashaPeriodsTable2/>

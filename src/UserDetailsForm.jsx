@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const UserDetailsForm = ({ onSubmit }) => {
+const UserDetailsForm = ({ onSubmit ,title }) => {
   const [userDetails, setUserDetails] = useState({
     day: "",
     month: "",
@@ -47,6 +47,7 @@ const UserDetailsForm = ({ onSubmit }) => {
   return (
     <form onSubmit={handleSubmit} className="my-4">
     <div className="row">
+     <h1 className="text-danger">{title}</h1>
       <div className="col-md-4">
         <label>
           Day:

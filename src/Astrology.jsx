@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Table from "./Table";
 import UserDetailsForm from "./UserDetailsForm";
+import "../src/styles/index.css" ;
 
 
 
@@ -48,15 +49,15 @@ const Astrology= ()=>{
   }
 
   return (
-    <div>
+    <div className="mainContainerSignup">
       {UserDetails ?  (
         <div>
-          <h1>Astrology </h1>
+          <h1 className="text-white">Astrology </h1>
           
-          <ul className="nav nav-pills">
+          <ul className="nav nav-tab">
             <li className="nav-item">
               <button
-                className={`nav-link ${activeTable === "mahadasha" ? "active" : ""}`}
+                className={`nav-link link-danger ${activeTable === "mahadasha" ? "active" : ""}`}
                 onClick={() => switchTable("mahadasha")}
               >
                 Mahadasha
@@ -64,7 +65,7 @@ const Astrology= ()=>{
             </li>
             <li className="nav-item">
               <button
-                className={`nav-link ${activeTable === "antardasha" ? "active" : ""}`}
+                className={`nav-link link-danger ${activeTable === "antardasha" ? "active" : ""}`}
                 onClick={() => switchTable("antardasha")}
               >
                 Antardasha
@@ -72,7 +73,7 @@ const Astrology= ()=>{
             </li>
             <li className="nav-item">
               <button
-                className={`nav-link ${activeTable === "paryantardasha" ? "active" : ""}`}
+                className={`nav-link  link-danger ${activeTable === "paryantardasha" ? "active" : ""}`}
                 onClick={() => switchTable("paryantardasha")}
               >
                 Paryantardasha
@@ -80,7 +81,7 @@ const Astrology= ()=>{
             </li>
             <li className="nav-item">
               <button
-                className={`nav-link ${activeTable === "shookshamadasha" ? "active" : ""}`}
+                className={`nav-link link-danger ${activeTable === "shookshamadasha" ? "active" : ""}`}
                 onClick={() => switchTable("shookshamadasha")}
               >
                 Shookshamadasha
@@ -88,7 +89,7 @@ const Astrology= ()=>{
             </li>
             <li className="nav-item">
               <button
-                className={`nav-link ${activeTable === "pranadasha" ? "active" : ""}`}
+                className={`nav-link link-danger ${activeTable === "pranadasha" ? "active" : ""}`}
                 onClick={() => switchTable("pranadasha")}
               >
                 Pranadasha
@@ -127,7 +128,7 @@ const Astrology= ()=>{
 
         </div>
       ) : (
-        <UserDetailsForm onSubmit={handleUserDetailsSubmit}/>
+        <UserDetailsForm onSubmit={handleUserDetailsSubmit} title="Astrology"/>
       )}
     </div>
   );
