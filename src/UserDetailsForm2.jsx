@@ -27,14 +27,14 @@ const UserDetailsForm2 = ({ onSubmit }) => {
     if (isValid) {
       const formattedDetails = {
         
-        day: parseInt(userDetails.day, 10),
+        day: userDetails.day,
         month: userDetails.month,
-        year: parseInt(userDetails.year, 10),
-        hour: parseInt(userDetails.hour, 10),
-        min: parseInt(userDetails.min, 10),
-        lat: parseFloat(userDetails.lat),
-        lon: parseFloat(userDetails.lon),
-        tzone: parseFloat(userDetails.tzone),
+        year: userDetails.year,
+        hour: userDetails.hour,
+        min: userDetails.min,
+        lat: userDetails.lat,
+        lon: userDetails.lon,
+        tzone: userDetails.tzone,
       };
       console.log(formattedDetails);
       onSubmit(formattedDetails);
